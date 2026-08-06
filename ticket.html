@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Viewing Page — HARIBOW "Go Beyond"</title>
+<style>
+  :root{ --bg:#0a0b0e; --panel:#14161c; --line:#2a2d35; --ink:#f3f1ea; --faint:#8b919e; --main:#c9a24b; }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}
+  .wrap{max-width:560px;margin:0 auto;padding:28px 18px 80px}
+  .brand{font-size:12px;letter-spacing:.4em;color:var(--faint);font-weight:700;margin-bottom:8px}
+  h1{font-size:22px;margin:0 0 18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:14px}
+  .lbl{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:4px}
+  .big{font-size:17px;font-weight:700;line-height:1.6;word-break:break-all}
+  .watch{display:block;text-align:center;background:var(--main);color:#14161c;font-weight:800;
+    font-size:17px;border-radius:11px;padding:16px;text-decoration:none;margin:6px 0}
+  .wait{border:1px dashed var(--line);border-radius:11px;padding:16px;text-align:center;color:var(--faint);font-size:14px;line-height:1.8}
+  .note{font-size:12.5px;color:var(--faint);line-height:1.9}
+  a{color:var(--main)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">HARIBOW — GO BEYOND</div>
+  <h1>Your Viewing Page</h1>
+  <div id="body"><p class="note">Loading… (first load can take ~20 seconds)</p></div>
+</div>
+<script>
+var BASE='https://script.google.com/macros/s/AKfycbyPtSUbVfZX9keG6E9jP9EfVSjy9DoA6onp_FgXPM3tbjLz2gm5UNcxaeqSyzIIbPFW/exec';
+var T=new URLSearchParams(location.search).get('t')||'';
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function load(){
+  if(!T){ document.getElementById('body').innerHTML='<p class="note">This link is missing its ticket code. Please open the exact URL from your email.</p>'; return; }
+  fetch(BASE+'?page=ticket&t='+encodeURIComponent(T)+'&r='+Date.now())
+  .then(function(r){return r.json();}).then(function(d){
+    var el=document.getElementById('body');
+    if(!d || !d.ok){
+      el.innerHTML='<p class="note">'+(d&&d.error==='unpaid'
+        ? 'Your payment hasn\'t been confirmed yet. If you completed checkout, this page will activate within an hour.'
+        : 'Ticket not found. Please open the exact URL from your email, or contact info@haribow.com.')+'</p>';
+      return;
+    }
+    var h='<div class="card"><div class="lbl">Ticket holder</div><div class="big">'+esc(d.name)+'</div>'
+      +'<div class="lbl" style="margin-top:12px">Order</div><div class="note">'+esc(d.breakdown)+'</div></div>';
+    h+='<div class="card"><div class="lbl">Show</div><div class="note">'
+      +'Sep 29, 2026 (Tue) — starts 7:30 PM JST<br>'
+      +'New York 6:30 AM ・ Los Angeles 3:30 AM ・ London 11:30 AM ・ Paris 12:30 PM ・ Sydney 8:30 PM</div></div>';
+    if(d.stream && d.stream.ready){
+      h+='<div class="card"><div class="lbl">Watch here</div>'
+        +'<a class="watch" href="'+esc(d.stream.url)+'">▶ OPEN THE STREAM</a>'
+        +(d.stream.password ? '<div class="note">Password: <b>'+esc(d.stream.password)+'</b></div>' : '')
+        +'<p class="note">Archive available at the same link until '+esc(d.stream.archiveUntil)+'.<br>'
+        +'If the link stops working during the show, refresh this page — a backup appears here.</p></div>';
+      if(d.stream.backup){
+        h+='<div class="card"><div class="lbl">Backup link</div><div class="note"><a href="'+esc(d.stream.backup)+'">'+esc(d.stream.backup)+'</a></div></div>';
+      }
+    } else {
+      h+='<div class="card"><div class="lbl">Stream link</div>'
+        +'<div class="wait">The watch link will appear here by <b>Sep 28 (JST)</b>.<br>'
+        +'We\'ll also email it to you. Bookmark this page.</div></div>';
+    }
+    h+='<p class="note">Questions? <a href="https://junyaunitydev.github.io/haribow-solo-show-survey/contact.html">Contact form</a> ・ info@haribow.com</p>';
+    el.innerHTML=h;
+  }).catch(function(){ document.getElementById('body').innerHTML='<p class="note">Network error — please reload.</p>'; });
+}
+load();
+</script>
+</body>
+</html>
