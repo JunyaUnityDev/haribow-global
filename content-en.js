@@ -53,17 +53,10 @@
     { k: "The top of double dutch", h: "2025 IJRU World Championship — Champions", b: "Against 30+ countries, team HARIBOW took the world title" }
   ];
 
-  /* 先頭＝配信（海外の主導線）。来場券は参考価格として英訳掲載 */
+  /* 配信専用（2026-08-06 JUNYA判断：来場券の料金表は載せない。
+     来場したい少数派は下の注記から日本語ページへ） */
   var TICKETS = [
-    { name: "International Stream Ticket", tag: "worldwide", sub: "live + 30-day archive ・ in English", price: "$17 (¥2,500)" },
-    { name: "Reserved S", tag: "thanks video", sub: "rows 3–12 center", pre: "¥4,500", reg: "¥5,000" },
-    { name: "Reserved A", sub: "front sides ・ rows 14–18 center", pre: "¥3,500", reg: "¥4,000" },
-    { name: "University student", pre: "¥2,500", reg: "¥3,000" },
-    { name: "University group", sub: "5 or more", price: "¥2,000" },
-    { name: "Community group", sub: "5 or more", price: "¥3,000" },
-    { name: "High school & kids", price: "General price" },
-    { name: "Supporter seat", sub: "row 2 center ・ 12 seats ・ with perks", price: "¥15,000" },
-    { name: "Preschoolers", sub: "free on a guardian’s lap (a seat requires a kids ticket)", price: "Free" }
+    { name: "International Stream Ticket", tag: "worldwide", sub: "live stream + 30-day archive ・ everything in English ・ watch with your whole crew", price: "$17 (¥2,500)" }
   ];
 
   /* ---------- 描画ヘルパ（JP版と同一） ---------- */
