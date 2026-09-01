@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Viewing Page — HARIBOW "Go Beyond"</title>
+<title>Live stream cancelled — HARIBOW "Go Beyond"</title>
 <style>
   :root{ --bg:#0a0b0e; --panel:#14161c; --line:#2a2d35; --ink:#f3f1ea; --faint:#8b919e; --main:#c9a24b; }
   *{box-sizing:border-box}
@@ -23,50 +23,40 @@
 </style>
 </head>
 <body>
+<!-- 2026-09-01 The worldwide live stream was cancelled (決定No.37 / ADR-015).
+     このページは404にしない：8/6から英語で "On sale now — $17" と公表しており、
+     URLは外に出ている。静的な告知だけにして、GAS は叩かない。 -->
 <div class="wrap">
   <div class="brand">HARIBOW — GO BEYOND</div>
-  <h1>Your Viewing Page</h1>
-  <div id="body"><p class="note">Loading… (first load can take ~20 seconds)</p></div>
+  <h1>The live stream has been cancelled</h1>
+
+  <div class="card">
+    <p class="note" style="font-size:14px;color:var(--ink);line-height:1.95;margin:0">
+      We have decided not to stream the September 29 show. There will be no live stream and no archive.
+      We are sorry — we know some of you were counting on watching from outside Japan.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="lbl">Refunds</div>
+    <p class="note" style="font-size:14px;color:var(--ink);line-height:1.95;margin:6px 0 0">
+      If you bought a stream ticket, <b>you will be refunded in full</b>, back to the card you paid with.
+      You do not need to do anything — we are processing these ourselves and will email you when it is done.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="lbl">The show</div>
+    <p class="note" style="font-size:14px;color:var(--ink);line-height:1.95;margin:6px 0 0">
+      <b>The show itself goes ahead on Tuesday, September 29, as planned.</b> Only the stream is cancelled.<br>
+      Seats at Meguro Persimmon Hall in Tokyo are still on sale. The seat-picker and checkout are in Japanese.
+    </p>
+    <a class="watch" href="https://ticket.haribow.com/seats.html" style="margin-top:14px">Book a seat at the venue</a>
+  </div>
+
+  <p class="note">
+    Questions? Write to <a href="mailto:info@haribow.com">info@haribow.com</a> — we read English.
+  </p>
 </div>
-<script>
-var BASE='https://script.google.com/macros/s/AKfycbyPtSUbVfZX9keG6E9jP9EfVSjy9DoA6onp_FgXPM3tbjLz2gm5UNcxaeqSyzIIbPFW/exec';
-var T=new URLSearchParams(location.search).get('t')||'';
-function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-function load(){
-  if(!T){ document.getElementById('body').innerHTML='<p class="note">This link is missing its ticket code. Please open the exact URL from your email.</p>'; return; }
-  fetch(BASE+'?page=ticket&t='+encodeURIComponent(T)+'&r='+Date.now())
-  .then(function(r){return r.json();}).then(function(d){
-    var el=document.getElementById('body');
-    if(!d || !d.ok){
-      el.innerHTML='<p class="note">'+(d&&d.error==='unpaid'
-        ? 'Your payment hasn\'t been confirmed yet. If you completed checkout, this page will activate within an hour.'
-        : 'Ticket not found. Please open the exact URL from your email, or contact info@haribow.com.')+'</p>';
-      return;
-    }
-    var h='<div class="card"><div class="lbl">Ticket holder</div><div class="big">'+esc(d.name)+'</div>'
-      +'<div class="lbl" style="margin-top:12px">Order</div><div class="note">'+esc(d.breakdown)+'</div></div>';
-    h+='<div class="card"><div class="lbl">Show</div><div class="note">'
-      +'Sep 29, 2026 (Tue) — starts 7:30 PM JST<br>'
-      +'Seoul 7:30 PM ・ Hong Kong 6:30 PM ・ Hanoi 5:30 PM ・ Sydney 8:30 PM<br>Paris/Berlin 12:30 PM ・ London 11:30 AM ・ New York 6:30 AM ・ Los Angeles 3:30 AM</div></div>';
-    if(d.stream && d.stream.ready){
-      h+='<div class="card"><div class="lbl">Watch here</div>'
-        +'<a class="watch" href="'+esc(d.stream.url)+'">▶ OPEN THE STREAM</a>'
-        +(d.stream.password ? '<div class="note">Password: <b>'+esc(d.stream.password)+'</b></div>' : '')
-        +'<p class="note">Archive available at the same link until '+esc(d.stream.archiveUntil)+'.<br>'
-        +'If the link stops working during the show, refresh this page — a backup appears here.</p></div>';
-      if(d.stream.backup){
-        h+='<div class="card"><div class="lbl">Backup link</div><div class="note"><a href="'+esc(d.stream.backup)+'">'+esc(d.stream.backup)+'</a></div></div>';
-      }
-    } else {
-      h+='<div class="card"><div class="lbl">Stream link</div>'
-        +'<div class="wait">The watch link will appear here by <b>Sep 28 (JST)</b>.<br>'
-        +'We\'ll also email it to you. Bookmark this page.</div></div>';
-    }
-    h+='<p class="note">Questions? <a href="https://ticket.haribow.com/contact.html">Contact form</a> ・ info@haribow.com</p>';
-    el.innerHTML=h;
-  }).catch(function(){ document.getElementById('body').innerHTML='<p class="note">Network error — please reload.</p>'; });
-}
-load();
-</script>
 </body>
 </html>

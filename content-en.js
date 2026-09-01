@@ -16,8 +16,10 @@
     datetime: "2026-09-29T19:30:00+09:00"
   };
 
-  /* 英語ページの購入導線は配信チケット（決定No.25：二重価格を同一画面に並べない） */
-  var PURCHASE_URL = "tickets.html";
+  /* 2026-09-01 配信を全面中止（決定No.37・ADR-015）。英語ページの唯一の商品だった
+     International Stream Ticket が無くなったため、購入導線を来場チケット（日本語の
+     購入画面）へ向け直した。購入フロー自体は日本語のままなので、下の note で断る。 */
+  var PURCHASE_URL = "https://ticket.haribow.com/seats.html";
   var A = "https://go-beyond.haribow.com/assets/lineup/";
 
   var LINEUP = [
@@ -53,10 +55,20 @@
     { k: "The top of double dutch", h: "2025 IJRU World Championship — Champions", b: "Against 30+ countries, team HARIBOW took the world title" }
   ];
 
-  /* 配信専用（2026-08-06 JUNYA判断：来場券の料金表は載せない。
-     来場したい少数派は下の注記から日本語ページへ） */
+  /* 2026-09-01 配信を全面中止（決定No.37・ADR-015）。
+     旧：International Stream Ticket ($17) の1件だけを載せていた（決定No.25＝
+     二重価格を同一画面に並べない、という判断で来場券の料金表は出していなかった）。
+     ★空配列にしてはいけない：index.html の Tickets セクションは見出しと表の枠が
+       残るので、消えるのではなく「壊れて見える」。来場券に入れ替える。
+     ★価格の正典は go-beyond の content.js。JP側を変えたらここも追従する。 */
   var TICKETS = [
-    { name: "International Stream Ticket", tag: "worldwide", sub: "live stream + 30-day archive ・ everything in English ・ watch with your whole crew", price: "$17 (¥2,500)" }
+    { name: "S Seat", tag: "thank-you video", sub: "1F rows 3–12, center", pre: "¥4,500", reg: "¥5,000" },
+    { name: "A Seat", sub: "1F front sides・rows 14–18 center・2F", pre: "¥3,500", reg: "¥4,000" },
+    { name: "University student", sub: "graduate students included ・ student ID at the door", pre: "¥2,500", reg: "¥3,000" },
+    { name: "Group (5+)", sub: "students ¥2,000 ・ other groups ¥3,000, per person", price: "¥2,000〜" },
+    { name: "High school and under", price: "same as adult" },
+    { name: "Supporter", sub: "1F row 2 center, 12 seats ・ signed fan, T-shirt, name in the program ・ until Sep 5", price: "¥15,000" },
+    { name: "Preschool age", sub: "on a guardian's lap. Buy a child ticket if you need a seat.", price: "free" }
   ];
 
   /* ---------- 描画ヘルパ（JP版と同一） ---------- */
@@ -97,7 +109,7 @@
       if ((el = q("#heroMeta"))) el.innerHTML =
         "<span><b>" + SHOW.dateShort + "</b> " + SHOW.dow + '</span><span class="dot"></span>' +
         "<span>Show <b>" + SHOW.start + '</b></span><span class="dot"></span>' +
-        "<span>" + SHOW.venue + " ・ streamed worldwide</span>";
+        "<span>" + SHOW.venue + "</span>";   /* 2026-09-01 配信中止により「・ streamed worldwide」を削除 */
       if ((el = q("#infoGrid"))) el.innerHTML =
         '<div class="cell"><div class="k">Date</div><div class="v">' + SHOW.dateShort + " " + SHOW.dow + '</div><div class="s">Doors ' + SHOW.open + " ・ Show " + SHOW.start + "</div></div>" +
         '<div class="cell"><div class="k">Venue</div><div class="v">' + SHOW.venue + '</div><div class="s">' + SHOW.hall + "</div></div>" +
