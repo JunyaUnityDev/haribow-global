@@ -10,7 +10,7 @@
   var SHOW = {
     dateShort: "2026.9.29", dow: "(Tue)",
     dateLong: "September 29, 2026 (Tue)",
-    open: "6:30 PM (TBC)", start: "7:30 PM JST",
+    open: "6:00 PM", start: "7:30 PM JST",
     venue: "Meguro Persimmon Hall", hall: "Main Hall, Tokyo",
     showType: "Multi-act showcase", showSub: "10 acts + collaboration, with intermission",
     datetime: "2026-09-29T19:30:00+09:00"
