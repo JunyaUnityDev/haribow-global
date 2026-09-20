@@ -12,7 +12,7 @@
     dateLong: "September 29, 2026 (Tue)",
     open: "6:00 PM", start: "7:30 PM JST",
     venue: "Meguro Persimmon Hall", hall: "Main Hall, Tokyo",
-    showType: "Multi-act showcase", showSub: "10 acts + collaboration, with intermission",
+    showType: "Multi-act showcase", showSub: "10 acts + collaboration, no intermission",
     datetime: "2026-09-29T19:30:00+09:00"
   };
 
@@ -42,7 +42,7 @@
   var STATS = [
     { t: "World No.1", lb: "2025 IJRU<br>World Championship" },
     { t: "First ever", lb: "Audience Golden Buzzer<br>Britain’s Got Talent" },
-    { n: 4, lb: "countries’<br>TV shows" },
+    { n: 7, lb: "countries’<br>TV shows" },
     { n: 20000, comma: true, lb: "-seat arena<br>(NBA halftime)" }
   ];
 
