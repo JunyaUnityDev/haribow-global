@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="ended">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -270,6 +270,11 @@ footer .cr{color:var(--faint);font-size:12px;margin-top:26px;letter-spacing:.08e
   .nav .brand{font-size:15px}
   .ttable th,.ttable td{padding:12px 12px;font-size:14px}
 }
+/* 2026-11-06 post-show mode. Remove class="ended" on <html> to revert */
+html.ended [data-buy],html.ended #tickets,html.ended #countdown,html.ended #access,html.ended .soon,
+html.ended .nav-links a[href="#tickets"],html.ended .nav-links a[href="#access"]{display:none!important}
+.ended-note{display:none}
+html.ended .ended-note{display:block;margin:18px 0 0;font-size:15px;line-height:1.8}
 </style>
 </head>
 <body>
@@ -301,6 +306,7 @@ footer .cr{color:var(--faint);font-size:12px;margin-top:26px;letter-spacing:.08e
   <div class="ov">
     <p class="theme">From the park to the world — and beyond.</p>
     <div class="meta-line" id="heroMeta"></div>
+    <p class="ended-note">The show has ended. Thank you to everyone who came and supported us.</p>
     <div class="btns">
       <a class="btn btn-p" data-buy href="tickets.html">Get Tickets</a>
       <a class="fs" href="https://kv.haribow.com/" target="_blank" rel="noopener">Fullscreen visual →</a>
